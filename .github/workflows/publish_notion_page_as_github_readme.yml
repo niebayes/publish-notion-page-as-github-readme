@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install @notionhq/client
-          npm install markdown-it
+          npm install notion-to-md
 
       - name: Fetch Notion page
         run: node fetch_notion_page.js
