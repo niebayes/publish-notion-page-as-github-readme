@@ -1,0 +1,34 @@
+name: Sync Notion blog to GitHub
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at midnight
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          npm install @notionhq/client
+          npm install markdown-it
+
+      - name: Fetch Notion page
+        run: node fetch_notion_page.js
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: niebayes
+          author_email: niebayes@email.com
+          message: 'Update blog content'
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
