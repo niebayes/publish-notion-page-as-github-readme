@@ -1,0 +1,5 @@
+- make this into a github action so that others could use it as a go-to. 
+  - take notion api key, page id, save path as inputs
+  - maybe support keeping tracking of a whole notion space. 
+- remove node.js related files after each run.
+- merge the javascript file into the action. (HOW?)
