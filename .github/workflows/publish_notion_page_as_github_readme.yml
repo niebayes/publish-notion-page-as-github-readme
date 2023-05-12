@@ -19,7 +19,7 @@ jobs:
           npm install notion-to-md
 
       - name: Fetch Notion page
-        run: node fetch_notion_page.js
+        run: node save_notion_page_as_readme.js
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
