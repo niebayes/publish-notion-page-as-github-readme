@@ -1,6 +1,7 @@
 name: Sync Notion blog to GitHub
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'  # Runs every day at midnight
 
