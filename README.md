@@ -1,4 +1,7 @@
 
+old replication feature: to provide high availability for stateless services. 
+
+
 # Questions
 
 
