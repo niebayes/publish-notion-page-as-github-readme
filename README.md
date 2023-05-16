@@ -32,7 +32,7 @@ maybe we should change the `shard_id` in `_ReplicaSet` .
 Clarify Orchestrator, Deployment, and Flow. 
 
 
-Clarify Pod, Executor, ReplicaSet, Shard, Container, Container Group.
+Clarify Pod, Runtime, Executor, ReplicaSet, Shard, Container, Container Group.
 
 
 Clarify metaclass, superclass, mixin class
@@ -42,6 +42,9 @@ Clarify jina_cli api. How it’s used? How Namespace is passed through?
 
 
 Clarify how a request is sent from jina client to an executor? Who handles the request? Who dispatch the request? Who sends the response? 
+
+
+Clarify shards and replicas?
 
 
 Clarify port, address, host
