@@ -121,7 +121,13 @@ The with clause in Python constructs a context. You may regard it as a scope in 
 When the inherited `__enter__` method gets called, the `start` method of the `Deployment` gets called. The basic execution unit in Jina is a pod. The `start` method first initiates a set of non-executor pods which may include use_before_pod, use_after_pod, head_pod, and gateway_pod. Their usages are still vague to me. 
 
 
-After these non-executor pods are initiated, a set of `_ReplicaSet` instances are constructed. It seems each shard will associate a replica set. Not clear about the 
+After these non-executor pods are initiated, a set of `_ReplicaSet` instances are constructed. It seems each shard will associate a replica set. Not clear about shard vs. replica. Alright, let’s assume there’s only one shard and hence only one replica set is constructed. 
+
+
+Since the metaclass of the `Deployment` class is the `DeploymentType` class which inherits the `ExitStack` class, we can call `enter_context` explicitly to invoke the `__enter__` method of a `_ReplicaSet` instance.
+
+
+When the `__enter__` method of the `_ReplicaSet` class gets called, the pods in the replica set are constructed and starts.
 
 
 # Python
