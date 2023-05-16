@@ -218,3 +218,41 @@ The Runtime handles various aspects of the Jina system, including:
 
 Overall, the Runtime in Jina plays a crucial role in enabling the execution and coordination of the various components within the Jina system, both in local and distributed environments.
 
+
+python abc module
+
+
+The `abc` module in Python provides support for defining abstract base classes (ABCs). ABCs are classes that serve as a blueprint for other classes and define a common interface or set of methods that subclasses are expected to implement.
+
+
+In your code snippet, the line `from abc import ABC, abstractmethod` imports two important elements from the `abc` module:
+
+1. `ABC`: It stands for "Abstract Base Class" and is a class that can be used as a base class for other classes. By inheriting from `ABC`, a class becomes an abstract base class itself. An abstract base class cannot be instantiated directly and is meant to be subclassed by concrete classes. It serves as a marker for the class hierarchy.
+2. `abstractmethod`: It is a decorator that is used to declare abstract methods within an abstract base class. An abstract method is a method that is defined in the abstract base class but does not provide an implementation. Subclasses of the abstract base class are required to override and provide their own implementation of the abstract methods.
+
+By using the `ABC` class as a base class and decorating methods with `abstractmethod`, you can define abstract base classes with abstract methods that enforce a specific interface for their subclasses. Subclasses must implement all the abstract methods, or they themselves become abstract classes. This mechanism helps in defining common behaviors and contracts for classes that share a certain interface or functionality.
+
+
+`__all__` list 
+
+
+The `__all__` variable is a list that defines the public interface of a module in Python. When a module is imported using the `import *` syntax, only the names listed in the `__all__` list are imported. It acts as a whitelist of names that are considered public and should be accessible to users of the module.
+
+
+In your code snippet, `__all__` is defined as `['BasePod', 'Pod']`. This means that when the module containing this code is imported using the `import *` syntax, only the names `'BasePod'` and `'Pod'` will be imported. Other names or attributes defined in the module will not be imported by default.
+
+
+This approach is commonly used to explicitly specify which names should be part of the public interface of a module. By limiting the exposed names, you can control the namespace pollution and provide a clear and concise API for users of your module.
+
+
+`argparse.Namespace` 
+
+
+The `__init__` method in the given code snippet is the constructor of a class. It takes an argument named `args` of type `argparse.Namespace`.
+
+
+The `argparse.Namespace` is a simple object used to hold the attributes parsed by the `argparse` module. It is typically used to store command-line arguments and their values. When command-line arguments are parsed using `argparse`, the resulting namespace object contains attributes corresponding to the parsed arguments.
+
+
+In the context of the `__init__` method, the `args` parameter is expected to be an instance of `argparse.Namespace` that holds the arguments parsed from the command line. This allows the class to access and use those arguments during its initialization process or throughout its lifetime.
+
