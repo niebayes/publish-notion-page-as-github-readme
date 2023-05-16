@@ -20,33 +20,7 @@ what’s the purpose of leaving the `Deployment.__init__` method with an empty f
 clarify the Pod type: HEAD, WORKER, GATEWAY
 
 
-what’s the purpose of this sequence of lines?
-
-
-```python
-if self.pod_args['uses_before'] is not None:
-            _args = self.pod_args['uses_before']
-            _args.noblock_on_start = True
-            self.uses_before_pod = PodFactory.build_pod(_args)
-            self.enter_context(self.uses_before_pod)
-        if self.pod_args['uses_after'] is not None:
-            _args = self.pod_args['uses_after']
-            _args.noblock_on_start = True
-            self.uses_after_pod = PodFactory.build_pod(_args)
-            self.enter_context(self.uses_after_pod)
-        if self.pod_args['head'] is not None:
-            _args = self.pod_args['head']
-            _args.noblock_on_start = True
-            self.head_pod = PodFactory.build_pod(_args)
-            self.enter_context(self.head_pod)
-        if self._include_gateway:
-            _args = self.pod_args['gateway']
-            _args.noblock_on_start = True
-            self.gateway_pod = PodFactory.build_pod(
-                _args, gateway_load_balancer=self._gateway_load_balancer
-            )
-            self.enter_context(self.gateway_pod)
-```
+I think we should model a stateful executor as a state machine which consists of peer FSM, executor F
 
 
 # Python
