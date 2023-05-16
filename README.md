@@ -121,10 +121,7 @@ The with clause in Python constructs a context. You may regard it as a scope in 
 When the inherited `__enter__` method gets called, the `start` method of the `Deployment` gets called. The basic execution unit in Jina is a pod. The `start` method first initiates a set of non-executor pods which may include use_before_pod, use_after_pod, head_pod, and gateway_pod. Their usages are still vague to me. 
 
 
-Each pod is associated a runtime which 
-
-
-Each non-executor pod is of type GATEWAY or HEAD. Have no idea about the usage of the head pod. The gateway does forwarding, dispatching jobs. Any else?
+Each pod is associated a runtime. There’re three runtime types: GATEWAY, HEAD, and WORKER. Non-executor pods maybe of type GATEWAY or HEAD while executor pods is of type WORKER. Have no idea about the usage of the head pod. The gateway does forwarding, dispatching jobs. Any else?
 
 
 After these non-executor pods are initiated, a set of `_ReplicaSet` instances are constructed. It seems each shard will associate a replica set. Not clear about shard vs. replica. Alright, let’s assume there’s only one shard and hence only one replica set is constructed. 
@@ -133,10 +130,13 @@ After these non-executor pods are initiated, a set of `_ReplicaSet` instances ar
 Since the metaclass of the `Deployment` class is the `DeploymentType` class which inherits the `ExitStack` class, we can call `enter_context` explicitly to invoke the `__enter__` method of a `_ReplicaSet` instance.
 
 
-When the `__enter__` method of the `_ReplicaSet` class gets called, the pods in the replica set are constructed and started. 
+When the `__enter__` method of the `_ReplicaSet` class gets called, the executor pods in the replica set are constructed and started. 
 
 
-Each executor pod contains two workers: a worker and a raft worker. The runtime worker serves for the executor while the raft worker handles Raft consensus.
+Each executor pod contains two workers: a runtime worker and a raft worker. The runtime worker serves for the executor while the raft worker handles Raft consensus.
+
+
+## How a request sent from Jina client to an executor?
 
 
 # Python
