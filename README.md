@@ -100,6 +100,18 @@ with dep
 ```
 
 
+The definition of `Deployment` is in `orchestrate/deployment/__init__.py`. 
+
+
+When `dep = Deployment(uses=FooExecutor)` is executed, the `__init__` method of Deployment will be executed. 
+
+
+There’re two `__init__` methods. Have no idea about the first `__init__` method, maybe it’s used to restrict the user input. I believe it’s the second `__init__` gets called. 
+
+
+This method mostly do arg parsing the checking. Besides, it sets a graph which depicts the flow of data. Typically, the graph consists of a start gateway and an executor.
+
+
 # Python
 
 
