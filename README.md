@@ -17,6 +17,9 @@ Seems we can use a gateway to do health checking and load balancing?
 what’s the purpose of leaving the `Deployment.__init__` method with an empty function body?
 
 
+clarify the Pod type: HEAD, WORKER, GATEWAY
+
+
 # Python
 
 
@@ -323,4 +326,97 @@ In this example, `ExitStack` is used to manage the opening and closing of two fi
 
 
 By using `ExitStack`, you can dynamically manage a stack of context managers, making your code more flexible and adaptable to different scenarios.
+
+
+python `*` args
+
+
+The `__init__` method you provided has a parameter list that starts with `*,`. This syntax indicates that all the parameters that follow must be keyword-only arguments.
+
+
+In Python, keyword-only arguments are arguments that can only be passed by specifying their names explicitly, and they cannot be passed positionally. They are useful when you want to enforce clarity and prevent potential errors when calling a function or initializing an object.
+
+
+Here's an example to illustrate the usage of keyword-only arguments:
+
+
+```text
+class MyClass:
+    def __init__(self, *, name, age):
+        self.name = name
+        self.age = age
+
+obj = MyClass(name='John', age=25)
+
+```
+
+
+In the above example, the `__init__` method of the `MyClass` class has two keyword-only arguments: `name` and `age`. When creating an instance of `MyClass`, you must pass values for these arguments by explicitly specifying their names using the `name=value` syntax.
+
+
+Attempting to pass arguments positionally would raise a `TypeError`:
+
+
+```text
+obj = MyClass('John', 25)  # Raises TypeError
+
+```
+
+
+By using the `*,` syntax in the parameter list, you ensure that the `name` and `age` arguments can only be passed as keyword arguments, making the code more explicit and less error-prone.
+
+
+python `*args` and `**kwargs` 
+
+
+In Python, `*args` and `**kwargs` are special syntaxes used in function definitions to handle a varying number of arguments.
+
+
+The `*args` syntax allows a function to accept any number of positional arguments. When `*args` is used in a function definition, it collects any extra positional arguments into a tuple. Here's an example:
+
+
+```text
+def my_function(*args):
+    for arg in args:
+        print(arg)
+
+my_function(1, 2, 3)  # Output: 1 2 3
+my_function('a', 'b', 'c', 'd')  # Output: a b c d
+
+```
+
+
+In the example above, the `my_function` accepts any number of positional arguments. The arguments are collected into the `args` tuple, and the function can iterate over them.
+
+
+On the other hand, `**kwargs` allows a function to accept any number of keyword arguments. It collects the extra keyword arguments into a dictionary where the keys are the argument names and the values are the corresponding values. Here's an example:
+
+
+```text
+def my_function(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+my_function(name='John', age=25)  # Output: name: John  age: 25
+my_function(country='USA', language='English', capital='Washington')  # Output: country: USA  language: English  capital: Washington
+
+```
+
+
+In the example above, the `my_function` accepts any number of keyword arguments. The arguments are collected into the `kwargs` dictionary, and the function can iterate over the keys and values.
+
+
+Both `*args` and `**kwargs` are optional and can be used together in a function definition to accept any combination of positional and keyword arguments. For example:
+
+
+```text
+def my_function(*args, **kwargs):
+    for arg in args:
+        print(arg)
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+my_function(1, 2, 3, name='John', age=25)  # Output: 1 2 3  name: John  age: 25
+
+```
 
