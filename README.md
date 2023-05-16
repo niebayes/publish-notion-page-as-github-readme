@@ -26,6 +26,9 @@ I think we should model the stateful executor as a big FSM which consists of pee
 maybe we should change the `shard_id` in `_ReplicaSet` .
 
 
+`shard_id` vs `replica_id`
+
+
 Clarify Orchestrator, Deployment, and Flow. 
 
 
@@ -39,6 +42,43 @@ Clarify jina_cli api. How it’s used? How Namespace is passed through?
 
 
 Clarify how a request is sent from jina client to an executor? Who handles the request? Who dispatch the request? Who sends the response? 
+
+
+Clarify port, address, host
+
+
+```python
+port = args.port[0] if isinstance(args.port, list) else args.port
+    address = f'{args.host}:{port}'
+    executor_target = f'{args.host}:{port + RAFT_TO_EXECUTOR_PORT}'
+
+    # if the Executor was already persisted, retrieve its port and host configuration
+    logger = JinaLogger('run_raft', **vars(args))
+    persisted_address = jraft.get_configuration(raft_id, raft_dir)
+    if persisted_address:
+        logger.debug(f'Configuration found on the node: Address {persisted_address}')
+        address = persisted_address
+        executor_host, port = persisted_address.split(':')
+        executor_target = f'{executor_host}:{int(port) + 1}'
+```
+
+
+Finally, what shall I exactly do? What results shall I present?
+
+
+help developing the stateful feature? 
+
+
+make it more efficient? I.e. better QPS.   It lacks of many common optimizations. It does not support various consistency modes. The code is not well-structured.
+
+
+advices on learning open-source projects?
+
+
+Will asking many question be impolite?
+
+
+How to trace the code path?
 
 
 # Python
