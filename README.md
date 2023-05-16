@@ -84,6 +84,22 @@ Will asking many question be impolite?
 How to trace the code path?
 
 
+# How Jina works?
+
+
+## What under the hood when deploy?
+
+
+```python
+from jina import Deployment
+
+dep = Deployment(uses=FooExecutor)
+
+with dep
+    dep.block()
+```
+
+
 # Python
 
 
