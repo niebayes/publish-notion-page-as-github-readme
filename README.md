@@ -109,7 +109,16 @@ When `dep = Deployment(uses=FooExecutor)` is executed, the `__init__` method of 
 There’re two `__init__` methods. Have no idea about the first `__init__` method, maybe it’s used to restrict the user input. I believe it’s the second `__init__` gets called. 
 
 
-This method mostly do arg parsing the checking. Besides, it sets a graph which depicts the flow of data. Typically, the graph consists of a start gateway and an executor.
+This method mostly does arg parsing the checking. Besides, it sets a graph which depicts the flow of data. Typically, the graph consists of a start gateway and an executor. Note, the gateway and the executor will not start until the deployment starts.
+
+
+Since the `Deployment` class is a subclass of the `BaseOrchestrator` class, it inherits the `__enter__` and `__exit__` methods defined in the `BaseOrchestrator` class. 
+
+
+The with clause in Python constructs a context. You may regard it as a scope in C++, Rust, etc. When `with dep` is executed, the control flow enters the context and the `__enter__` method gets called. When the control flow exits the context, the `__exit__` method gets called. 
+
+
+When the inherited `__enter__` method gets called, the `start` method of the `Deployment` gets called. 
 
 
 # Python
