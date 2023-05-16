@@ -14,6 +14,9 @@ Seems we can use a gateway to do health checking and load balancing?
 [bookmark](https://jina-v-raft--jina-docs.netlify.app/concepts/orchestration/scale-out/#replicate-stateless-executors)
 
 
+what’s the purpose of leaving the `Deployment.__init__` method with an empty function body?
+
+
 # Python
 
 
