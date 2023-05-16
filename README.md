@@ -141,3 +141,46 @@ When the function `modify_list` is called, a copy of the reference to `my_list` 
 
 In summary, Python passes variables by reference, but the references themselves are passed by value. This means that modifications to mutable objects (like lists) made inside a function can affect the original object, but reassigning the reference to a new object does not affect the original reference.
 
+
+python `__enter__` and `__exit__` methods
+
+
+In Python, the `__enter__` method is a special method that is defined as part of the context manager protocol. It is used in conjunction with the `with` statement to set up resources and establish a context for a block of code. The `__enter__` method is called when entering the block, and it returns the context object that will be used within the block.
+
+
+Here's a basic example that demonstrates the usage of `__enter__` method:
+
+
+```text
+class MyContext:
+    def __enter__(self):
+        # Set up resources or acquire locks
+        print("Entering the context")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        # Clean up resources or release locks
+        print("Exiting the context")
+
+# Using the context manager with the `with` statement
+with MyContext() as context:
+    # Code block where the context is active
+    print("Inside the context")
+
+```
+
+
+In this example, the `MyContext` class defines the `__enter__` method, which is responsible for setting up any necessary resources or acquiring locks. In this case, it simply prints a message indicating that it's entering the context and returns `self`.
+
+
+When the `with` statement is encountered, the `__enter__` method of the context manager is called, and the returned context object (in this case, an instance of `MyContext`) is assigned to the target variable (`context` in this case).
+
+
+The code block inside the `with` statement is where the context is active. In this example, it prints a message indicating that it's inside the context.
+
+
+After the code block is executed or if an exception is raised within the block, the `__exit__` method of the context manager is called. This method is responsible for cleaning up resources or releasing locks. In this example, it simply prints a message indicating that it's exiting the context.
+
+
+The `with` statement ensures that the `__enter__` method is called before entering the code block and that the `__exit__` method is called after exiting the code block, regardless of whether an exception occurs or not. This provides a convenient way to manage resources and ensure proper cleanup even in the presence of exceptions.
+
