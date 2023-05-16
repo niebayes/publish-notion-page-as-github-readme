@@ -20,7 +20,22 @@ what’s the purpose of leaving the `Deployment.__init__` method with an empty f
 clarify the Pod type: HEAD, WORKER, GATEWAY
 
 
-I think we should model a stateful executor as a state machine which consists of peer FSM, executor F
+I think we should model the stateful executor as a big FSM which consists of peer FSM, executor FSM, and raft FSM.  Since these three is wrapped in a big FSM, there’s no need to leverage multiprocessing, thus we can get around issues incurred by multiprocessing.
+
+
+maybe we should change the `shard_id` in `_ReplicaSet` .
+
+
+Clarify Orchestrator, Deployment, and Flow. 
+
+
+Clarify Pod, Executor, ReplicaSet, Shard, Container, Container Group.
+
+
+Clarify metaclass, superclass, mixin class
+
+
+Clarify jina_cli api. How it’s used? How Namespace is passed through?
 
 
 # Python
