@@ -256,3 +256,68 @@ The `argparse.Namespace` is a simple object used to hold the attributes parsed b
 
 In the context of the `__init__` method, the `args` parameter is expected to be an instance of `argparse.Namespace` that holds the arguments parsed from the command line. This allows the class to access and use those arguments during its initialization process or throughout its lifetime.
 
+
+python context manager 
+
+
+A context manager is a Python object that is used to manage resources and define a specific context of execution. It allows you to allocate and release resources automatically when entering and exiting a specific block of code. The `with` statement is used to work with context managers in Python.
+
+
+A context manager is defined by implementing two special methods:
+
+1. `__enter__()`: This method is called when entering the context. It sets up the necessary resources or environment for the context. It can return an object that will be assigned to the variable specified in the `as` clause of the `with` statement.
+2. `__exit__(exc_type, exc_value, traceback)`: This method is called when exiting the context. It is responsible for cleaning up or releasing any acquired resources. It receives information about any exception that occurred within the context.
+
+By using a context manager, you ensure that resources are properly managed and released, even if an exception occurs. It provides a convenient way to handle common resource management patterns, such as opening and closing files, acquiring and releasing locks, establishing and closing network connections, and more.
+
+
+Here's an example of using a context manager to open and close a file:
+
+
+```text
+with open('file.txt', 'r') as file:
+    # Perform operations on the file
+    # The file will be automatically closed at the end of the block
+
+```
+
+
+In this example, the `open()` function returns a file object, which is a context manager. The `with` statement ensures that the file is properly closed when the block of code is exited, regardless of whether an exception occurred or not.
+
+
+python `ExitStack` 
+
+
+`ExitStack` is a context manager provided by the `contextlib` module in Python. It is a versatile tool that allows you to manage a dynamic stack of context managers. It is particularly useful when you need to work with an unknown or variable number of context managers.
+
+
+The `ExitStack` class can be used as a context manager itself, or it can be used as a helper within another context manager. It keeps track of the context managers that are entered and ensures that their `__exit__()` methods are called in reverse order when exiting the context.
+
+
+The main advantage of `ExitStack` is its ability to handle an arbitrary number of context managers without explicitly specifying them in the code. You can dynamically push new context managers onto the stack using the `enter_context()` method. When the context is exited, the `ExitStack` automatically calls the `__exit__()` methods of the context managers in reverse order.
+
+
+Here's an example that demonstrates the usage of `ExitStack`:
+
+
+```text
+from contextlib import ExitStack
+
+def process_data():
+    with ExitStack() as stack:
+        # Push context managers onto the stack
+        file1 = stack.enter_context(open('file1.txt', 'r'))
+        file2 = stack.enter_context(open('file2.txt', 'w'))
+
+        # Perform operations on the files
+
+    # The file objects are automatically closed when exiting the context
+
+```
+
+
+In this example, `ExitStack` is used to manage the opening and closing of two files. The `enter_context()` method is used to push the file objects onto the stack. When the context is exited, the `ExitStack` automatically calls the `__exit__()` methods of the file objects, ensuring that they are properly closed.
+
+
+By using `ExitStack`, you can dynamically manage a stack of context managers, making your code more flexible and adaptable to different scenarios.
+
