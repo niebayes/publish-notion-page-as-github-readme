@@ -108,3 +108,36 @@ When the decorated `greeting` function is called with an argument, the following
 
 Decorators are powerful tools in Python that allow you to modify the behavior of functions or classes transparently. They are commonly used for logging, timing, authentication, memoization, and other cross-cutting concerns.
 
+
+python pass by value or reference
+
+
+In Python, variables are passed by reference, but the references themselves are passed by value. This means that when you pass a variable to a function as an argument, a copy of the reference to the object is created and passed to the function.
+
+
+To understand this concept, let's consider an example:
+
+
+```text
+def modify_list(lst):
+    lst.append(4)
+    lst = [1, 2, 3]
+
+my_list = [0]
+modify_list(my_list)
+print(my_list)
+
+```
+
+
+In this example, we have a function called `modify_list` that takes a list as an argument. Inside the function, we first append the value `4` to the list. Then, we assign a new list `[1, 2, 3]` to the `lst` parameter.
+
+
+If Python passed variables by reference, we would expect the output to be `[0, 4]` because the modifications made inside the function would affect the original list. However, Python actually passes the reference to the list by value. So, the output of the above code would be `[0, 4]`.
+
+
+When the function `modify_list` is called, a copy of the reference to `my_list` is created and passed to the function. Inside the function, modifications to the list itself (e.g., appending `4`) affect the original list because they are operating on the same object. However, when we assign a new list to `lst`, it creates a new object and the reference inside the function is updated to point to the new list. This does not affect the original `my_list` outside the function.
+
+
+In summary, Python passes variables by reference, but the references themselves are passed by value. This means that modifications to mutable objects (like lists) made inside a function can affect the original object, but reassigning the reference to a new object does not affect the original reference.
+
