@@ -54,3 +54,57 @@ By using a dry run endpoint, you can gain insights into the processing steps, ch
 
 In summary, a dry run endpoint in Jina allows you to simulate and test the behavior of a flow or an executor without making permanent modifications to the data. It provides a safe and informative way to verify the processing logic and debug your Jina application.
 
+
+how python decorator works?
+
+
+In Python, a decorator is a special type of function that allows you to modify the behavior of another function or class. It provides a way to wrap or extend the functionality of the decorated object without modifying its source code directly.
+
+
+Here's a basic example to illustrate how decorators work:
+
+
+```python
+def decorator_function(original_function):
+    def wrapper_function(*args, **kwargs):
+        # Code to be executed before the original function
+        print("Decorator function executed before '{}'".format(original_function.__name__))
+
+        # Call the original function
+        result = original_function(*args, **kwargs)
+
+        # Code to be executed after the original function
+        print("Decorator function executed after '{}'".format(original_function.__name__))
+
+        # Return the result of the original function
+        return result
+
+    # Return the wrapper function
+    return wrapper_function
+
+
+@decorator_function
+def greeting(name):
+    print("Hello, {}!".format(name))
+
+
+# Call the decorated function
+greeting("Alice")
+
+```
+
+
+In the example above, we have a decorator function called `decorator_function`. It takes the original function as an argument and defines a wrapper function inside it. The wrapper function adds extra functionality before and after the original function is called.
+
+
+The `@decorator_function` syntax is used to apply the decorator to the `greeting` function. This is equivalent to `greeting = decorator_function(greeting)`. The decorator function is executed at the time of decoration and replaces the original function with the wrapper function.
+
+
+When the decorated `greeting` function is called with an argument, the following steps occur:
+
+1. The decorator function is executed before the original function. In this example, it prints a message indicating that the decorator function is executed.
+2. The original function is called with the provided arguments.
+3. The decorator function is executed after the original function. In this example, it prints a message indicating that the decorator function is executed again, but this time after the original function.
+
+Decorators are powerful tools in Python that allow you to modify the behavior of functions or classes transparently. They are commonly used for logging, timing, authentication, memoization, and other cross-cutting concerns.
+
