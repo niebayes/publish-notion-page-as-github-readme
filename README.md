@@ -118,7 +118,10 @@ Since the `Deployment` class is a subclass of the `BaseOrchestrator` class, it i
 The with clause in Python constructs a context. You may regard it as a scope in C++, Rust, etc. When `with dep` is executed, the control flow enters the context and the `__enter__` method gets called. When the control flow exits the context, the `__exit__` method gets called. 
 
 
-When the inherited `__enter__` method gets called, the `start` method of the `Deployment` gets called. 
+When the inherited `__enter__` method gets called, the `start` method of the `Deployment` gets called. The basic execution unit in Jina is a pod. The `start` method first initiates a set of non-executor pods which may include use_before_pod, use_after_pod, head_pod, and gateway_pod. Their usages are still vague to me. 
+
+
+After these non-executor pods are initiated, a set of `_ReplicaSet` instances are constructed. It seems each shard will associate a replica set. Not clear about the 
 
 
 # Python
