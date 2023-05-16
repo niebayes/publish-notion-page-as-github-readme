@@ -36,3 +36,21 @@ The superclass and metaclass are two different concepts in object-oriented progr
 
 To summarize, the superclass is an existing class that is extended or inherited by a subclass, while the metaclass is a class that defines the behavior of other classes (including the superclass). The superclass-subclass relationship defines the inheritance hierarchy, where the subclass extends the superclass, whereas the metaclass-class relationship defines how classes are created and behave.
 
+
+dry run endpoint 
+
+
+In the context of Jina, a "dry run endpoint" refers to an endpoint that allows you to simulate or test the behavior of a flow or an executor without actually executing the full processing or performing any modifications to the data.
+
+
+When you perform a "dry run" on an endpoint, it means that you can send a request to the endpoint, and it will process the request up to a certain point without making any permanent changes or modifications. This is useful for testing and debugging purposes, as it allows you to verify the behavior of your flow or executor without affecting the actual data or making any irreversible changes.
+
+
+The dry run endpoint typically provides information about the intermediate state of the processing, such as the routing of documents, the execution of individual executors, or the data flow within the system. It helps you understand how your flow or executor is processing the data and identify any potential issues or bottlenecks.
+
+
+By using a dry run endpoint, you can gain insights into the processing steps, check if the desired operations are being performed correctly, and analyze the output or intermediate results without committing any changes to the data.
+
+
+In summary, a dry run endpoint in Jina allows you to simulate and test the behavior of a flow or an executor without making permanent modifications to the data. It provides a safe and informative way to verify the processing logic and debug your Jina application.
+
