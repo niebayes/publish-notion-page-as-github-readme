@@ -20,6 +20,7 @@ jobs:
 
       - name: Fetch Notion page
         run: |
+          pwd
           cd .github/workflow
           mkdir build && cd build
           cp ../notion_page_to_readme.js ./notion_page_to_readme.js
