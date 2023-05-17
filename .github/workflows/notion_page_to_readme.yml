@@ -19,7 +19,14 @@ jobs:
           npm install notion-to-md
 
       - name: Fetch Notion page
-        run: node save_notion_page_as_readme.js
+        run: |
+          cd .github/workflow
+          mkdir build && cd build
+          cp ../notion_page_to_readme.js ./notion_page_to_readme.js
+          node notion_page_to_readme.js
+          mv README.md ../../../README.md
+          cd .. 
+          rm -rf build
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7

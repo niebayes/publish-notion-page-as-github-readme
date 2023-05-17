@@ -26,4 +26,3 @@ async function main() {
 
 console.log("fetching page...");
 main();
-console.log("done");
