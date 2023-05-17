@@ -20,6 +20,7 @@ jobs:
 
       - name: Fetch Notion page
         run: |
+          ls
           pwd
           cd .github/workflow
           mkdir build && cd build
