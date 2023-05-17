@@ -5,9 +5,6 @@ old replication feature: to provide high availability for stateless services.
 good boy agaim
 
 
-![Untitled.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8eaf5c13-715a-4327-ae71-1c2b22d1a118/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230517%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230517T062625Z&X-Amz-Expires=3600&X-Amz-Signature=ab482a649676778e65f0791f9b0b38559e1e961bb6cc317e9c273d833dc6fe6d&X-Amz-SignedHeaders=host&x-id=GetObject)
-
-
 # Questions
 
 
