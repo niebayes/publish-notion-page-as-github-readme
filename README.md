@@ -5,6 +5,9 @@ old replication feature: to provide high availability for stateless services.
 good boy agaim
 
 
+plan to switch to etcd raft instead of Hashicorp raft
+
+
 # Questions
 
 
